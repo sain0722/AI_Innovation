@@ -56,3 +56,20 @@ print()
 # a[0] = 100    # a[0] 값을 100으로 변경하려 하기 때문에 TypeError 발생
 
 #######################################################################
+
+# dictionary
+# hash 또는 map 과 구조가 비슷함.
+# key 와 value 를 할 쌍으로 해서 데이터를 저장한다.
+
+score = {'KIM': 90, 'LEE': 85, 'JUN': 95}
+print("score['KIM'] == ", score['KIM'])
+score['HAN'] = 100      # 새 원소 추가
+
+# dictionary 는 입력한 순서대로 데이터가 들어가는 것이 아니므로 주의한다.
+print(score)
+
+# key, value 값 확인
+print("score key == ", score.keys())
+print("score value == ", score.values())
+print("score items == ", score.items())
+
