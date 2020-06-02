@@ -72,4 +72,38 @@ print(score)
 print("score key == ", score.keys())
 print("score value == ", score.values())
 print("score items == ", score.items())
+print()
 
+#######################################################################
+
+# string
+# 문자열은 '' 또는 ""를 사용해서 생성
+# 문자열 내의 각각의 값 또한 문자열로 인식됨.
+# 문자열을 분리하여 list 로 반환하는 split() 함수
+#   - 머신러닝 코드에서 문자열 데이터 전처리를 하기 위해 자주 사용됨.
+
+a = 'A73,CD'
+print(a[1], type(a[1]))     # a[1] 은 숫자 7이 아닌 문자열 7
+
+a = a + ', EFG'             # + 연산자 사용
+print(a)
+
+# split() 메서드는 특정 separator 를 기준으로 문자열을 분리하여 list 를 리턴.
+b = a.split(',')
+print(b)
+print()
+
+#######################################################################
+
+# [Other] function
+# type(data): 입력 data 의 데이터타입을 알려주는 함수
+# len(data): 입력 data 의 길이(요소의 개수)를 알려주는 함수
+
+a = [10, 20, 30, 40, 50]
+b = (10, 20, 30, 40, 50)
+c = {'KIM': 90, 'LEE': 85}
+d = 'SEOUL, KOREA'
+e = [ [100, 200], [300, 400], [500, 600]]
+
+print(type(a), type(b), type(c), type(d), type(e))
+print(len(a), len(b), len(c), len(d), len(e))
