@@ -21,10 +21,14 @@ print("train label shape = ", np.shape(mnist.train.labels))
 print("test image shape = ", np.shape(mnist.test.images))
 print("test label shape = ", np.shape(mnist.test.labels))
 
+#######################################################################################
+
 # Hyper-Parameter
 learning_rate = 0.001  # 학습률
 epochs = 30            # 반복횟수
 batch_size = 100      # 한번에 입력으로 주어지는 MNIST 개수
+
+#######################################################################################
 
 # 입력과 정답을 위한 플레이스홀더 정의
 X = tf.placeholder(tf.float32, [None, 784])
@@ -32,6 +36,8 @@ X = tf.placeholder(tf.float32, [None, 784])
 A1 = X_img = tf.reshape(X, [-1, 28, 28, 1])   # image 28X28X1 (black/white)
 
 T = tf.placeholder(tf.float32, [None, 10])
+
+#######################################################################################
 
 # 1번째 컨볼루션 층, 3X3X32 필터
 W2 = tf.Variable(tf.random_normal([3, 3, 1, 32], stddev=0.01))
@@ -48,6 +54,8 @@ Z2 = tf.nn.relu(C2+b2)
 # 1번째 max pooling을 통해 28 X 28 X 32  => 14 X 14 X 32
 A2 = P2 = tf.nn.max_pool2d(Z2, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
+#######################################################################################
+
 # 2번째 컨볼루션 층, 3X3X32 개 필터
 W3 = tf.Variable(tf.random_normal([3, 3, 32, 32], stddev=0.01))
 b3 = tf.Variable(tf.constant(0.1, shape=[32]))
@@ -61,8 +69,12 @@ Z3 = tf.nn.relu(C3+b3)
 # 2번째 max pooling을 통해 14 X 14 X 64 => 7 X 7 X 32
 A3 = P3 = tf.nn.max_pool2d(Z3, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
+#######################################################################################
+
 # 7 X 7 크기를 가진 64개의 activation map을 flatten 시킴
 A3_flat = P3_flat = tf.reshape(A3, [-1, 7*7*32])
+
+#######################################################################################
 
 # 출력층
 W4 = tf.Variable(tf.random_normal([7*7*32, 10], stddev=0.01))
@@ -73,12 +85,16 @@ Z4 = logits = tf.matmul(A3_flat, W4) + b4   # 선형회귀 값 Z4
 
 y = A4 = tf.nn.softmax(Z4)
 
+#######################################################################################
+
 loss = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits_v2(logits=Z4, labels=T) )
 
 # Adam Optimizer 설정
 optimizer = tf.train.AdamOptimizer(learning_rate)
 
 train = optimizer.minimize(loss)
+
+#######################################################################################
 
 # batch_size X 10 데이터에 대해 argmax를 통해 행단위로 비교함
 predicted_val = tf.equal( tf.argmax(A4, 1), tf.argmax(T, 1) )
@@ -89,10 +105,14 @@ accuracy = tf.reduce_mean(tf.cast(predicted_val, dtype=tf.float32))
 # index list 출력
 accuracy_index = tf.cast(predicted_val, dtype=tf.float32)
 
+#######################################################################################
+
 # 예측값 처리
 predicted_list = tf.argmax(A4, 1)
 
 index_label_prediction_list = []
+
+#######################################################################################
 
 with  tf.Session()  as sess:
 
