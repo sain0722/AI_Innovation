@@ -5,6 +5,11 @@
 # elapsed time: 0:46:31.606821
 # Accuracy: 99.26%
 
+# 학습환경
+# CPU: Ryzen 3600
+# 그래픽카드: RTX 2070 Super
+
+
 import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 import numpy as np
